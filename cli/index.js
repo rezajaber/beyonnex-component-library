@@ -1,23 +1,23 @@
 #!/usr/bin/env node
-
 const fs = require('fs');
 const path = require('path');
 
 const args = process.argv.slice(2);
 const [framework, component] = args;
 
-const baseDir = path.resolve(__dirname, '..');
-const srcDir = path.join(baseDir, `packages/${framework}-library/src/components/ui/${component}`);
-const destDir = path.resolve(process.cwd(), 'components/ui', component);
+const baseDir = path.resolve(__dirname, 'components', framework);
+const srcFile = path.join(baseDir, `${component}.vue`);
+const destDir = path.resolve(process.cwd(), 'src/components/ui');
+const destFile = path.join(destDir, `${component}.vue`);
 
-if (!fs.existsSync(srcDir)) {
+console.log(`Looking for component in: ${srcFile}`);
+
+if (!fs.existsSync(srcFile)) {
   console.error(`Component ${component} not found in ${framework} library.`);
   process.exit(1);
 }
 
 fs.mkdirSync(destDir, { recursive: true });
-fs.readdirSync(srcDir).forEach(file => {
-  fs.copyFileSync(path.join(srcDir, file), path.join(destDir, file));
-});
+fs.copyFileSync(srcFile, destFile);
 
-console.log(`Copied ${component} from ${framework}-library to ${destDir}`);
+console.log(`Copied ${component}.vue from ${framework} library to ${destDir}`);

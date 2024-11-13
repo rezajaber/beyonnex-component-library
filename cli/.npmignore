@@ -1,0 +1,6 @@
+# Exclude everything except what we need
+node_modules
+.DS_Store
+# Other files or directories to exclude
+components/angular/
+components/vue/
