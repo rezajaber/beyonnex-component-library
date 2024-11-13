@@ -1,0 +1,12 @@
+{
+    "name": "bx-cli",
+    "version": "1.0.0",
+    "main": "index.js",
+    "bin": {
+      "bx-cli": "./index.js"
+    },
+    "dependencies": {
+      "fs": "0.0.1-security",
+      "path": "0.12.7"
+    }
+  }
